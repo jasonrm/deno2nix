@@ -62,7 +62,7 @@ in
     buildPhase = ''
       export DENO_DIR="/tmp/deno2nix"
       mkdir -p $DENO_DIR
-      ln -s "${mkDepsLink (src + "/${lockfile}")}" $(deno info --json | jq -r .modulesCache)
+      ln -s "${mkDepsLink lockfile}" $(deno info --json | jq -r .modulesCache)
       ${compileCmd}
     '';
     installPhase = ''
